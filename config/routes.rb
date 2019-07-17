@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :locations
+  resources :moods
   resources :posts
   resources :users, only: [:index, :show]
 
