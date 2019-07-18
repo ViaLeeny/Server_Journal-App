@@ -16,7 +16,7 @@ class PostsController < ApplicationController
       end
     
       def create
-        post = Post.create(title: params[:title], content: params[:content], user_id: params[:user_id])
+        post = Post.create(title: params[:title], content: params[:content], user_id: params[:user_id], mood_id: params[:mood_id], location_id: params[:location_id])
         render json: post
       end
     
@@ -44,7 +44,7 @@ class PostsController < ApplicationController
       private
     
       def post_params
-        params.require(:post).permit(:user_id, :title, :content)
+        params.require(:post).permit(:user_id, :title, :content, :location_id, :mood_id)
       end
     end
     
