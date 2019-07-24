@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::API
 
-  def current_user
-    id = decode_token['id'].to_i
-    User.find_by(id: id)
-  end 
+  def issue_token(data)
+    JWT.encode(data, secret)
+  end
+
 
   def decode_token
       begin
@@ -17,9 +17,15 @@ class ApplicationController < ActionController::API
       request.headers['Authorization']
   end 
 
-  def issue_token(data)
-      JWT.encode(data, secret)
-  end
+  def current_user
+
+    id = decode_token['id'].to_i
+   
+    u = User.find_by(id: id)
+    return u 
+  end 
+
+
 
   def secret
       'SHH'

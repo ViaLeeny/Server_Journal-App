@@ -34,11 +34,9 @@ class UsersController < ApplicationController
   end
     
     def signup
-      user.User.new(username: params[:username], password: params[:password])
+      user = User.new(first_name: params[:first_name], last_name: params[:last_name], email: params[:email], username: params[:username], password: params[:password])
       if user.save
-        payload = {user_id: user.id}
-        token = issue_token(payload)
-        render json: {jwt: token}
+        render json: { username: user.username, token: issue_token({ id: user.id }) }
       else 
         render json: {error: "Signup not successful!"}
       end 

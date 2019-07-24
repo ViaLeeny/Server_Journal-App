@@ -3,9 +3,9 @@ class LocationsController < ApplicationController
     def index
         locations = Location.all
         render json: locations, include: [:posts]
-    end
-
-    def show
+      end
+    
+      def show
         location = Location.find_by(id: params[:id])
         if location
           render json: location, include: [:posts]
@@ -14,6 +14,5 @@ class LocationsController < ApplicationController
         end
       end
 
-      
 
-end 
+end

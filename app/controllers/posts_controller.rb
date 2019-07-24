@@ -3,27 +3,40 @@ class PostsController < ApplicationController
 
       def index
         posts = Post.all
-        render json: posts
+        render json: posts, include: [:location]
       end
     
       def show
+
         post = Post.find_by(id: params[:id])
         if post
-          render json: post
+          render json: post, include: [:location]
         else
           render json: { error: "Post not found." }, status: 404
         end
       end
     
       def create
-        post = Post.create(title: params[:title], content: params[:content], user_id: params[:user_id], mood_id: params[:mood_id], location_id: params[:location_id])
-        render json: post
+        # mood = Mood.find_or_create_by(name: params[:mood])
+
+        user = current_user
+        location = Location.find_or_create_by(name: params[:location_name], longitude: params[:longitude], latitude: params[:latitude]  )
+        post = Post.create(title: params[:title], content: params[:content], user_id: user.id, location_id: location.id, mood_id: params[:mood_id])
+  
+        if post.valid?
+          post.save
+          render json: post
+        else 
+          render json: { error: "ohhh no! something went terribly wrong" }
+        end
       end
-    
+
       def update
+        user = current_user
         post = Post.find_by(id: params[:id])
-        if post
-          post.update(post_params)
+        location = Location.find_or_create_by(name: params[:location_name], longitude: params[:longitude], latitude: params[:latitude]  )
+        if location
+          post.update(title: params[:title], content: params[:content], user_id: user.id, location_id: location.id, mood_id: params[:mood_id])
           render json: post
         else
           render json: { error: "Post doesn't exist" }
