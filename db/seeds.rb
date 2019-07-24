@@ -5,3 +5,57 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+User.destroy_all
+Location.destroy_all
+Mood.destroy_all
+Post.destroy_all
+
+users = User.create([
+    { first_name: 'Ayleen', 
+    last_name: 'Nazario' , 
+    username: 'Ayleen', 
+    email: 'a@gmail.com' , 
+    password: '1234' }
+])
+
+moods = Mood.create([
+    { emotion: 'Angry'}
+])
+
+locations = Location.create([
+    { longitude: -74.005974, 
+    latitude: 40.712776 , 
+    name: 'New York, NY' },
+
+    { longitude: -71.058884, 
+    latitude: 42.360081 , 
+    name: 'Boston, MA'  },
+
+    { longitude: -122.419418, 
+    latitude: 37.774929 , 
+    name: 'San Francisco, CA'  }
+])
+
+posts = Post.create([
+    { title: "Testing New York", 
+    content: "Mic check" , 
+    user_id: 1, 
+    location_id: 1 , 
+    mood_id: 1 },
+
+    { title: "Testing Boston", 
+    content: "Mic check" , 
+    user_id: 1, 
+    location_id: 2 , 
+    mood_id: 1 },
+
+    { title: "Testing San Francisco", 
+    content: "Mic check" , 
+    user_id: 1, 
+    location_id: 3 , 
+    mood_id: 1 }
+
+])
+
+

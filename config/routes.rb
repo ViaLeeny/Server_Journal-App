@@ -1,16 +1,13 @@
 Rails.application.routes.draw do
   resources :posts
-  resources :users
+  resources :locations
+  resources :moods
+  resources :users, only: [:index, :show]
 
-  namespace :api do
-    namespace :v1 do
-      resources :users, only: [:index, :create]
-    end
-  end
-
-  post "/user/create", to: "user#create"
-  get "/user/show", to: "user#show"
-
-  get "/posts", to: "posts#my_posts"
+  post "/signin", to: "users#signin"
+  post "/signup", to: "users#signup"
+  get "/validate", to: "users#validate"
+  get "/posts", to: "users#posts"
+  get "/locations", to: "users#locations"
 
 end
