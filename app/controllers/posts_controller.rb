@@ -17,12 +17,12 @@ class PostsController < ApplicationController
       end
     
       def create
-        # mood = Mood.find_or_create_by(name: params[:mood])
+        # tone = tone.find_or_create_by(name: params[:tone])
 
         user = current_user
         location = Location.find_or_create_by(name: params[:location_name], longitude: params[:longitude], latitude: params[:latitude]  )
-        post = Post.create(title: params[:title], content: params[:content], user_id: user.id, location_id: location.id, mood_id: params[:mood_id])
-  
+        post = Post.new(title: params[:title], content: params[:content], user_id: user.id, location_id: location.id)
+        post.tone = post.get_tone
         if post.valid?
           post.save
           render json: post
@@ -36,7 +36,8 @@ class PostsController < ApplicationController
         post = Post.find_by(id: params[:id])
         location = Location.find_or_create_by(name: params[:location_name], longitude: params[:longitude], latitude: params[:latitude]  )
         if location
-          post.update(title: params[:title], content: params[:content], user_id: user.id, location_id: location.id, mood_id: params[:mood_id])
+          post.update(title: params[:title], content: params[:content], user_id: user.id, location_id: location.id)
+          post.tone = post.get_tone
           render json: post
         else
           render json: { error: "Post doesn't exist" }
@@ -53,11 +54,11 @@ class PostsController < ApplicationController
           render json: { error: "Post doesn't exist" }
         end
       end
-    
+      
       private
     
       def post_params
-        params.require(:post).permit(:user_id, :title, :content, :location_id, :mood_id)
+        params.require(:post).permit(:user_id, :title, :content, :location_id, :tone)
       end
     end
     
