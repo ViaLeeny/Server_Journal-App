@@ -8,7 +8,6 @@
 
 User.destroy_all
 Location.destroy_all
-Mood.destroy_all
 Post.destroy_all
 
 users = User.create([
@@ -19,9 +18,6 @@ users = User.create([
     password: '1234' }
 ])
 
-moods = Mood.create([
-    { emotion: 'Angry'}
-])
 
 locations = Location.create([
     { longitude: -74.005974, 
@@ -42,19 +38,19 @@ posts = Post.create([
     content: "Mic check" , 
     user_id: 1, 
     location_id: 1 , 
-    mood_id: 1 },
+    tone: "Analytical"},
 
     { title: "Testing Boston", 
     content: "Mic check" , 
     user_id: 1, 
     location_id: 2 , 
-    mood_id: 1 },
+    tone: "Analytical" },
 
     { title: "Testing San Francisco", 
     content: "Mic check" , 
     user_id: 1, 
     location_id: 3 , 
-    mood_id: 1 }
+    tone: "Analytical" }
 
 ])
 

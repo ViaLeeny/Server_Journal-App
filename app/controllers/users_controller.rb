@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   def signin
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
-      render json: { username: user.username, token: issue_token({ id: user.id }) }
+      render json: { username: user.username, token: issue_token({ id: user.id }), posts: user.posts }
     else
       render json: { error: 'Login failed. Invalid username/password combination.' }, status: 401
     end
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   def validate
     user = current_user
     if user
-      render json: { username: user.username, token: issue_token({ id: user.id }) }
+      render json: { username: user.username, token: issue_token({ id: user.id }), posts: user.posts }
     else
       render json: { error: 'User not found.' }, status: 404
     end
@@ -36,18 +36,19 @@ class UsersController < ApplicationController
     def signup
       user = User.new(first_name: params[:first_name], last_name: params[:last_name], email: params[:email], username: params[:username], password: params[:password])
       if user.save
-        render json: { username: user.username, token: issue_token({ id: user.id }) }
+        render json: { username: user.username, token: issue_token({ id: user.id }), posts: user.posts }
       else 
         render json: {error: "Signup not successful!"}
       end 
     end 
-end
 
-def posts
-  user = current_user
-  if user 
-    render json: User.find(current_user[:id]).posts
-  else 
-    render json: {error: "Posts not available."}, status: 400
-  end
+    def user_posts
+      user = current_user
+      if user 
+        render json: User.find(current_user[:id]).posts, include: [:location]
+      else 
+        render json: {error: "Posts not available."}, status: 400
+      end
+    end 
+
 end
