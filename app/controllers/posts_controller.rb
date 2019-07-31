@@ -23,6 +23,7 @@ class PostsController < ApplicationController
         location = Location.find_or_create_by(name: params[:location_name], longitude: params[:longitude], latitude: params[:latitude]  )
         post = Post.new(title: params[:title], content: params[:content], user_id: user.id, location_id: location.id)
         post.tone = post.get_tone
+        
         if post.valid?
           post.save
           render json: post
@@ -54,7 +55,7 @@ class PostsController < ApplicationController
           render json: { error: "Post doesn't exist" }
         end
       end
-      
+
       private
     
       def post_params
