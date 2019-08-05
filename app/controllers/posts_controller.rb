@@ -26,7 +26,7 @@ class PostsController < ApplicationController
         
         if post.valid?
           post.save
-          render json: post
+          render json: post, include: [:location]
         else 
           render json: { error: "ohhh no! something went terribly wrong" }
         end
@@ -39,7 +39,7 @@ class PostsController < ApplicationController
         if location
           post.update(title: params[:title], content: params[:content], user_id: user.id, location_id: location.id)
           post.tone = post.get_tone
-          render json: post
+          render json: post, include: [:location]
         else
           render json: { error: "Post doesn't exist" }
         end

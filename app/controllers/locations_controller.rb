@@ -16,3 +16,23 @@ class LocationsController < ApplicationController
 
 
 end
+
+
+# // setLocations = () => {
+# //   const {locations} = this.state 
+# //   const getLocations = [...locations]
+
+# //   getPosts()
+# //   .then(data => 
+
+# //     data.map(post => 
+# //       // console.log(post.location)
+# //       getLocations.push(post.location))
+# //     )
+# //     .then(
+# //       this.setState({
+# //         locations: getLocations
+# //     })
+# //     )
+# // } 
+
