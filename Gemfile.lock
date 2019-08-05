@@ -179,7 +179,7 @@ DEPENDENCIES
   json
   jwt
   listen (>= 3.0.5, < 3.2)
-  pg (>= 0.18, < 2.0)
+  pg
   pry
   puma (~> 3.11)
   rack-cors
