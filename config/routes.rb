@@ -1,3 +1,12 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :posts
+  resources :locations
+  resources :users, only: [:index, :show]
+
+  post "/signin", to: "users#signin"
+  post "/signup", to: "users#signup"
+  get "/validate", to: "users#validate"
+  get "/user_posts", to: "users#user_posts"
+  get "/locations", to: "users#locations"
+
 end
