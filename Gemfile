@@ -52,5 +52,5 @@ gem 'pry'
 gem 'json'
 
 group :production do
-  gem gem 'pg', '>= 0.18', '< 2.0'
+ gem 'pg', '>= 0.18', '< 2.0'
 end
