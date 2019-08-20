@@ -49,10 +49,10 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'pry'
 gem 'json'
 
-group :development, :test do
-  gem 'sqlite3'
-end
+# group :development, :test do
+#   gem 'sqlite3'
+# end
 
-group :production do
+# group :production do
  gem 'pg', '>= 0.18', '< 2.0'
-end
+# end
