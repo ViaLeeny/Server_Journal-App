@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  root 'users#index'
+
   resources :posts
   resources :locations
   resources :users, only: [:index, :show]
