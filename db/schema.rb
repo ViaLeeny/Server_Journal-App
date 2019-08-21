@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(version: 2019_08_21_161552) do
     t.datetime "updated_at", null: false
     t.integer "location_id"
     t.string "tone"
-    t.integer "location_id"
   end
 
   create_table "users", force: :cascade do |t|
