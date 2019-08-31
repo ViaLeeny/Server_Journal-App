@@ -74,16 +74,18 @@ GEM
     http_parser.rb (0.6.0)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
-    ibm_cloud_sdk_core (0.3.3)
+
+    ibm_cloud_sdk_core (0.3.1)
       concurrent-ruby (~> 1.0)
       http (~> 4.1.0)
       jwt (~> 2.2.1)
-    ibm_watson (0.20.1)
+    ibm_watson (0.19.0)
       concurrent-ruby (~> 1.0)
       eventmachine (~> 1.2)
       faye-websocket (~> 0.10)
       http (~> 4.1.0)
-      ibm_cloud_sdk_core (~> 0.3.3)
+      ibm_cloud_sdk_core (~> 0.3.1)
+
       jwt (~> 2.2.1)
     json (2.2.0)
     jwt (2.2.1)
@@ -180,7 +182,8 @@ DEPENDENCIES
   json
   jwt
   listen (>= 3.0.5, < 3.2)
-  pg (>= 0.18, < 2.0)
+
+  pg
   pry
   puma (~> 3.11)
   rack-cors
